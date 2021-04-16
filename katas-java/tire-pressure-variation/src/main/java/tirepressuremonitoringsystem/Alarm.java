@@ -4,8 +4,8 @@ public class Alarm {
     private final double LowPressureThreshold = 17;
     private final double HighPressureThreshold = 21;
 
-    private Sensor sensor;
-    private AlarmAlerter realAlarmAlerter;
+    private final Sensor sensor;
+    private final AlarmAlerter realAlarmAlerter;
     private boolean alarmOn = false;
 
     public Alarm(final Sensor sensor, final AlarmAlerter realAlarmAlerter) {
@@ -19,28 +19,21 @@ public class Alarm {
     }
 
     public void check() {
-        double psiPressureValue = getSensorPressure();
+        double psiPressureValue = sensor.popNextPressurePsiValue();
 
         if (psiPressureValue < LowPressureThreshold || HighPressureThreshold < psiPressureValue) {
             if(!isAlarmOn()) {
                 alarmOn = true;
-                alert("Alarm activated!");
+                realAlarmAlerter.activateAlert();
             }
         } else {
             if(isAlarmOn()) {
                 alarmOn = false;
-                alert("Alarm deactivated!");
+                realAlarmAlerter.deactivateAlert();
             }
         }
     }
 
-    protected void alert(String text) {
-        realAlarmAlerter.alert(text);
-    }
-
-    protected double getSensorPressure() {
-        return sensor.popNextPressurePsiValue();
-    }
 
     private boolean isAlarmOn() {
         return alarmOn;

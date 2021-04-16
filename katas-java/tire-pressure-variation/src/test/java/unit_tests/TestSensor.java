@@ -4,18 +4,18 @@ import tirepressuremonitoringsystem.*;
 
 public class TestSensor implements Sensor {
 
-    private double preassure;
+    private double pressure;
 
-    public TestSensor(double desiredPreassure) {
-        this.preassure = desiredPreassure;
+    public TestSensor(double desiredPressure) {
+        this.pressure = desiredPressure;
     }
 
-    public void setPreassure(double preassure) {
-        this.preassure = preassure;
+    public void setPressure(double pressure) {
+        this.pressure = pressure;
     }
 
     @Override
     public double popNextPressurePsiValue() {
-        return this.preassure;
+        return this.pressure;
     }
 }

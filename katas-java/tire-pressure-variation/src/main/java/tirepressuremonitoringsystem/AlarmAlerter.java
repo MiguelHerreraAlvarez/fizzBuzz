@@ -1,5 +1,6 @@
 package tirepressuremonitoringsystem;
 
 public interface AlarmAlerter {
-    void alert(String alert);
+    void activateAlert();
+    void deactivateAlert();
 }

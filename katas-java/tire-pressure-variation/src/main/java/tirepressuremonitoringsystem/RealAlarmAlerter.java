@@ -3,7 +3,12 @@ package tirepressuremonitoringsystem;
 public class RealAlarmAlerter implements AlarmAlerter {
 
     @Override
-    public void alert(String alert) {
-        System.out.print(alert);
+    public void activateAlert() {
+        System.out.println("Alarm activated!");
+    }
+
+    @Override
+    public void deactivateAlert() {
+        System.out.println("Alarm deactivated!");
     }
 }
